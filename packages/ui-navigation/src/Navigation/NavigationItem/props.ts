@@ -51,7 +51,7 @@ type NavigationItemOwnProps = {
   /**
    * If the NavigationItem does not go to a new page pass an onClick
    */
-  onClick?: (...args: any[]) => void
+  onClick?: (event: React.MouseEvent) => void
   /**
    * Denotes which NavigationItem is currently selected
    */
