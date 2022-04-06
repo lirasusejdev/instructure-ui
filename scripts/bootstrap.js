@@ -28,10 +28,10 @@ const path = require('path')
 
 const opts = { stdio: 'inherit' }
 function buildProject() {
-  // this config lets us use the exisiting shell session for the sub processes stdins and stdouts
+  // this config lets us use the existing shell session for the sub processes stdins and stdouts
   // and lets us handle the stderrs of sub processes
   // if one of the sub processes fails, then we terminate the other sub process and exit the main process
-  const spawnStdIoOpts = { stdio: ['inherit', 'inherit', 'pipe'] }
+  const spawnStdIoOpts = { stdio: ['inherit', 'inherit', 'inherit'] }
   execSync(
     'lerna run prepare-build --stream --scope @instructure/ui-icons',
     opts
@@ -50,7 +50,7 @@ function buildProject() {
   babelBuild.on('exit', (code) => {
     if (code !== 0) {
       tsBuild.kill()
-      console.error("'yarn build' failed :(", babelBuild.stderr)
+      console.error("'yarn build' failed :(")
       process.exit(code)
     }
     if (process.env.CI) {
