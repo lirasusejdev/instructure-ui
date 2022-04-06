@@ -80,3 +80,5 @@ function clean() {
 // eslint-disable-next-line no-console
 console.info('cleaning packages...')
 clean()
+// eslint-disable-next-line no-console
+console.info('clean finished')

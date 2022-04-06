@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const { execSync, fork, spawn, exec } = require('child_process')
+const { execSync, fork, spawn } = require('child_process')
 const path = require('path')
 
 const opts = { stdio: 'inherit' }
@@ -55,7 +55,7 @@ function bootstrap() {
   try {
     fork(path.resolve('scripts/clean.js'), opts)
   } catch (error) {
-    console.error(error)
+    console.error('clean failed with error:', error)
     process.exit(1)
   }
 
