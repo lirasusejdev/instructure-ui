@@ -50,7 +50,7 @@ function buildProject() {
   babelBuild.on('exit', (code) => {
     if (code !== 0) {
       tsBuild.kill()
-      console.error("'yarn build' failed :(")
+      console.error("'yarn build' failed :(", babelBuild.stderr)
       process.exit(code)
     }
     if (process.env.CI) {
