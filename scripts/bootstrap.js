@@ -32,7 +32,13 @@ function buildProject() {
   // and lets us handle the stderrs of sub processes
   // if one of the sub processes fails, then we terminate the other sub process and exit the main process
   const spawnStdIoOpts = { stdio: ['inherit', 'inherit', 'pipe'] }
-  const tsBuild = spawn('yarn', ['build:ts'], spawnStdIoOpts)
+  execSync(
+    'lerna run prepare-build --stream --scope @instructure/ui-icons',
+    opts
+  )
+  // eslint-disable-next-line no-console
+  console.info('Starting Babel and TSC...')
+  const tsBuild = spawn('yarn', ['build:types', '--verbose'], spawnStdIoOpts)
   const babelBuild = spawn('yarn', ['build'], spawnStdIoOpts)
   tsBuild.on('exit', (code) => {
     if (code !== 0) {
