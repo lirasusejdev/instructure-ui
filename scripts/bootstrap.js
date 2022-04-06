@@ -48,7 +48,7 @@ function buildProject() {
     }
   })
   babelBuild.stderr.on('data', (data) => {
-    console.error("'yarn build' failed:", data)
+    console.error("'yarn build' failed:", data.toString())
   })
   babelBuild.on('exit', (code) => {
     if (code !== 0) {
