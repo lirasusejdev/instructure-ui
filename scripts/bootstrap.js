@@ -37,17 +37,20 @@ function buildProject() {
   tsBuild.on('exit', (code) => {
     if (code !== 0) {
       babelBuild.kill()
+      console.error("'yarn build:ts' failed :(")
       process.exit(code)
     }
   })
   babelBuild.on('exit', (code) => {
     if (code !== 0) {
       tsBuild.kill()
+      console.error("'yarn build' failed :(")
       process.exit(code)
     }
-
     if (process.env.CI) {
-      execSync('yarn build:tokens', opts)
+      const result = execSync('yarn build:tokens', opts)
+      // eslint-disable-next-line no-console
+      console.info('yarn build:tokens result', result)
     }
   })
 }
