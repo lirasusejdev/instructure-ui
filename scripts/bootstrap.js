@@ -47,8 +47,11 @@ function buildProject() {
       process.exit(code)
     }
   })
+  tsBuild.stderr.on('data', (data) => {
+    console.error('TSC ERROR', data.toString())
+  })
   babelBuild.stderr.on('data', (data) => {
-    console.error("'yarn build' failed:", data.toString())
+    console.error('BABEL ERROR', data.toString())
   })
   babelBuild.on('exit', (code) => {
     if (code !== 0) {

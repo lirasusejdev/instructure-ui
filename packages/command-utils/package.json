@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4",
-    "concurrently": "^7",
+    "concurrently": "^6",
     "cross-env": "^7",
     "execa": "^5",
     "which": "^2"
