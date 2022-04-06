@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: '16'
       - name: Install dependencies
-        run: yarn install
+        run: YARN_CHECKSUM_BEHAVIOR=update yarn
       - name: Bootstrap project
         run: yarn bootstrap
       - name: Run test for the patchset
