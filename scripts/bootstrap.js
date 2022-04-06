@@ -31,7 +31,7 @@ function buildProject() {
   // this config lets us use the existing shell session for the sub processes stdins and stdouts
   // and lets us handle the stderrs of sub processes
   // if one of the sub processes fails, then we terminate the other sub process and exit the main process
-  const spawnStdIoOpts = { stdio: ['inherit', 'inherit', 'inherit'] }
+  const spawnStdIoOpts = { stdio: ['inherit', 'inherit', 'pipe'] }
   execSync(
     'lerna run prepare-build --stream --scope @instructure/ui-icons',
     opts
@@ -46,6 +46,9 @@ function buildProject() {
       console.error("'yarn build:ts' failed :(")
       process.exit(code)
     }
+  })
+  babelBuild.stderr.on('data', (data) => {
+    console.error("'yarn build' failed:", data)
   })
   babelBuild.on('exit', (code) => {
     if (code !== 0) {
