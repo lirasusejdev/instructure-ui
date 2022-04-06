@@ -7,7 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install packages.
-        run: yarn install
+        # YARN_CHECKSUM_BEHAVIOR=update is needed because CodeSandbox depends on a GIT repo (CompuIves/humps)
+        # which has some mismatched checksum
+        run: YARN_CHECKSUM_BEHAVIOR=update yarn install
       - name: Set up project.
         run: yarn bootstrap
       - name: Build docs-app.

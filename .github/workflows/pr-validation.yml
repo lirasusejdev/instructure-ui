@@ -12,6 +12,8 @@ jobs:
         with:
           node-version: '16'
       - name: Install dependencies
+        # YARN_CHECKSUM_BEHAVIOR=update is needed because CodeSandbox depends on a GIT repo (CompuIves/humps)
+        # which has some mismatched checksum
         run: YARN_CHECKSUM_BEHAVIOR=update yarn
       - name: Bootstrap project
         run: yarn bootstrap

@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install packages.
-        run: yarn install
+        run: YARN_CHECKSUM_BEHAVIOR=update yarn install
       - name: Set up project.
         run: yarn bootstrap
       - name: Run tests.
